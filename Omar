@@ -1,0 +1,197 @@
+class CustomerSearch : public AdminProduct {
+public:
+    AdminProduct a;
+
+    void exploreproducts() {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 5; j++) {
+                cout << a.arr[i][j] << "    ";
+
+            }
+            cout << endl;
+
+        }
+    }
+
+
+};
+
+class Storeowner : public Product
+{
+private:
+    string Oname;
+    string Oemail;
+
+public:
+    bool check_number(string str) {
+        for (int i = 0; i < str.length(); i++)
+            if (isdigit(str[i]) == false)
+                return false;
+        return true;
+    }
+
+    void addproduct() override {
+        string storename;
+        string storeid;
+        int no;
+        string Pname;
+        string Pcat;
+        string Bname;
+        string Pquantity;
+        string price;
+        cout << "Enter store name:" << endl;
+        cin >> storename;
+        cout << "Enter storeId:" << endl;
+        cin >> storeid;
+        cout << "how many products will you add?" << endl;
+        cin >> no;
+        string Products[100][5];
+        for (int i = 0; i < no; i++) {
+            cout << "-----------------------" << endl;
+            cout << "please enter brand name" << endl;
+            cin >> Bname;
+            if (check_number(Bname)) {
+                cout << "---->failed to add product" << endl;
+                cout << "-----------------------" << endl;
+                cout << "---->please enter a number" << endl;
+                cout << "-----------------------" << endl;
+                addproduct();
+
+            }
+            else {
+                Products[i][0] = Bname;
+            }
+            cout << "please enter product name" << endl;
+            cin >> Pname;
+            if (check_number(Pname)) {
+                cout << "---->failed to add product" << endl;
+                cout << "-----------------------" << endl;
+                cout << "---->please enter a number" << endl;
+                cout << "-----------------------" << endl;
+                addproduct();
+
+            }
+            else {
+                Products[i][1] = Pname;
+            }
+            cout << "please enter product category" << endl;
+            cin >> Pcat;
+            if (check_number(Pcat)) {
+                cout << "---->failed to add product" << endl;
+                cout << "-----------------------" << endl;
+                cout << "---->please enter a number" << endl;
+                cout << "-----------------------" << endl;
+                addproduct();
+
+            }
+            else {
+                Products[i][2] = Pcat;
+            }
+
+            cout << "please enter product price" << endl;
+            cin >> price;
+            if (check_number(price)) {
+                Products[i][3] = price;
+            }
+            else {
+                cout << "---->failed to add product" << endl;
+                cout << "-----------------------" << endl;
+                cout << "---->please enter a number" << endl;
+                cout << "-----------------------" << endl;
+                addproduct();
+
+            }
+            cout << "please enter product quantity" << endl;
+            cin >> Pquantity;
+            if (check_number(Pquantity)) {
+                Products[i][4] = Pquantity;
+            }
+            else {
+                cout << "---->failed to add product" << endl;
+                cout << "-----------------------" << endl;
+                cout << "---->please enter a number" << endl;
+                cout << "-----------------------" << endl;
+                addproduct();
+
+            }
+        }
+        for (int i = 0; i < no; i++) {
+            cout << "-----------------------" << endl;
+            cout << i + 1 << " product added succeflly" << endl;
+            cout << "Brand name:" << Products[i][0] << endl;
+            cout << "product name:" << Products[i][1] << endl;
+            cout << "Category:" << Products[i][2] << endl;
+            cout << "price:" << Products[i][3] << endl;
+            cout << "Quantity:" << Products[i][4] << endl;
+
+            cout << "-----------------------" << endl;
+        }
+
+        cout << "thanks for adding products" << endl;
+    }
+};
+
+//---------------------------------------------//
+
+class Store
+{
+private:
+    string Address;
+    string StoreName;
+    int storeId;
+    string type;
+
+public:
+    void setStoreName(string sn) {
+        StoreName = sn;
+    }
+
+    void setAddress(string a) {
+        Address = a;
+    }
+
+    void setStoreId(int i) {
+        storeId = i;
+    }
+
+    void setType(string t) {
+        type = t;
+    }
+
+    string getStoreName() {
+        return StoreName;
+    }
+
+    string getAdress() {
+        return Address;
+    }
+
+    string getType() {
+        return type;
+    }
+
+    int getStoreId() {
+        return storeId;
+
+    }
+};
+//--------------------------------//
+class OnlineStore : public Store
+{
+private:
+    string products;
+    string website;
+
+public:
+    void BuyProdcuts();
+};
+//---------------------------------//
+class NormalStore : public Store
+{
+private:
+    string storename;
+    string address;
+public:
+    void SupplyProducts();
+};
+//-----------------------------------------------------------------------//
